@@ -1,0 +1,30 @@
+#signupform{
+    text-align: center;
+}
+#loginform{
+    text-align: center;
+    
+}
+#login{
+    background-image: url("eight_horns.png");
+}
+#signup{
+    background-image: url("eight_horns.png");
+}
+#student{
+    background-image: url("geometry2.png");
+}
+#home{
+    background-image: url("geometry2.png");
+}
+
+
+
+input.signupform{
+    text-align: center;
+}
+
+input.loginform{
+    text-align: center;
+}
+

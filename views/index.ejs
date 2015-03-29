@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-ng-app="fakeSchool">
+<head>
+  <meta charset="utf-8">
+
+  <title>fakeSchool</title>
+  <meta name="description" content="a school network">
+  <meta name="author" content="Eke Wokocha">
+
+  <link rel="stylesheet" href="stylesheets/skeleton.css"/>
+  <link rel="stylesheet" href="stylesheets/custom.css"/>
+  <script src='/scripts/angular.min.js' type="text/javascript"></script>
+  <script src='/scripts/angular-route.min.js' type="text/javascript"></script>
+  <script src='/scripts/angular-resource.min.js' type="text/javascript"></script>
+
+</head>
+<body id="{{$root.page}}">
+    <div data-ng-if="$root.page=='signup'" >
+      <div id="signupform" class="container" data-ng-controller='SignUpController'>
+        <div class = "row">
+            
+            <div class ="6 columns">
+                <h1> Signup</h1>
+                <form data-ng-submit="submit()">
+                    <div>
+                        <label>User Name</label>
+                        <input data-ng-model="username" class="signupform" type="text" >
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input data-ng-model="password" class="signupform" type="password">
+                    </div>
+                    <div>
+                        <label>Category </label>
+                        <select data-ng-model="choice">
+                          <option value="admin" >Administrator</option>
+                          <option value="teacher">Teacher</option>
+                          <option value="student">Student</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Signup</button>
+                </form>
+
+                <hr>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class ="6 columns">
+            <p>Already have an account? &nbsp;<button ng-click="$root.page = 'login' ">Login</button></p>
+            <p>Or go home.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div data-ng-if="$root.page=='login'" >
+      <div id="loginform" class="container" data-ng-controller='LoginController'>
+        <div class = "row">
+            
+            <div class ="6 columns">
+                <h1> Login</h1>
+                <!-- show any messages that come back with authentication -->
+                <code ng-if="message">{{message}}</code>
+
+                <!-- LOGIN FORM -->
+                <form data-ng-submit="submit()">
+                    <div> 
+                        <label>User Name </label>
+                        <input data-ng-model="username" class="loginform" type="text" name="username">
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input data-ng-model="password" class="loginform" type="password" name="password">
+                    </div>
+
+                    <button class="button-primary" type="submit">Login</button>
+                </form>
+
+                <hr>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class ="6 columns">
+            <p>Don't have an account? &nbsp;<button ng-click="$root.page='signup'">Sign Up!</button></p>
+            <p>Or go home.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div ng-if="$root.page=='home'">
+      <div class="container" id="home" ng-controller='homeController'>
+        <h1 style="color:purple">Archive of all Users</h1>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>UserName</th>
+              <th>Hierarchy</th>
+              <th>Password Hash</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in users">
+              <td>{{user.username}}</td>
+              <td>{{user.category}}</td>
+              <td>{{user.password}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="submit" ng-click="$root.page='login'">Logout</button>
+    </div>
+  </div>
+
+    <div ng-if="$root.page=='student'" >
+        <div class="container" ng-controller='studentController'>
+            <div class="row">
+
+              <div class="one-third column">
+              </br>
+                  <h1 style="color:blue" >fake<span style="color:purple">School</span></h1>
+                 </br>
+                </br>
+                <button type="submit" ng-click="$root.page='login'">Logout</button>
+                <table class="u-full-width">
+                      <thead>
+                        <tr>
+                          <th>Teachers</th>
+                        </tr>
+                      </thead>
+                  <tbody>
+                      <tr ng-repeat="teacher in teachers">
+                        <td>{{teacher.name}}</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="two-thirds column">
+              </br>
+                  <table class="u-full-width">
+                      <thead>
+                        <tr>
+                          <th>Todo</th>
+                          <th>What to do</th>
+                        </tr>
+                      </thead>
+                  <tbody>
+                      <tr ng-repeat="tado in tados">
+                        <td>{{tado.name}}</td>
+                        <td>{{tado.text}}</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript" src='scripts/fakeSchool.js'></script>
+</html>
